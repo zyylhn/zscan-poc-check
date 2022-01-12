@@ -1,4 +1,4 @@
-module github.com/zyylhn/zscan-poc-check
+module zscan-poc-check
 
 go 1.16
 
