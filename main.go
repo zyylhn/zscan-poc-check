@@ -1,6 +1,6 @@
 package main
 
-import "zscan_poc_check/cmd"
+import "github/zyylhn/zscan_poc_check/cmd"
 
 func main() {
 	cmd.Execute()
