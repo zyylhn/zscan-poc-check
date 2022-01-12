@@ -1,15 +1,12 @@
 package lib
 
 import (
-	"crypto/tls"
 	"embed"
 	"fmt"
 	"github.com/google/cel-go/cel"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
-	"log"
 	"math/rand"
-	"net"
 	"net/http"
 	"net/url"
 	"regexp"
@@ -871,48 +868,48 @@ func runPocExec(tasks chan Task,wg *sync.WaitGroup)  {
 	}
 }
 
-var (
-	Client           *http.Client
-	ClientNoRedirect *http.Client
-	dialTimout       = time.Second*5
-	keepAlive        = 15 * time.Second
-)
-
-func Inithttp() {
-	err := InitHttpClient(10, time.Second*5)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
-func InitHttpClient(ThreadsNum int,Timeout time.Duration) error {
-	dialer := &net.Dialer{
-		Timeout:   dialTimout,
-		KeepAlive: keepAlive,
-
-	}
-	//d:= func(ctx context.Context,network,addr string)(net.Conn,error) {
-	//	return Getconn(addr)
-	//}
-	tr := &http.Transport{
-		DialContext:         dialer.DialContext,
-		MaxConnsPerHost:     0,
-		MaxIdleConns:        0,
-		MaxIdleConnsPerHost: ThreadsNum * 2,
-		IdleConnTimeout:     keepAlive,
-		TLSClientConfig:     &tls.Config{InsecureSkipVerify: true},
-		TLSHandshakeTimeout: Timeout*2,
-		DisableKeepAlives:   false,
-		//DialTLSContext: d,
-	}
-	Client = &http.Client{
-		Transport: tr,
-		Timeout:   Timeout,
-	}
-	ClientNoRedirect = &http.Client{
-		Transport:     tr,
-		Timeout:       Timeout,
-		CheckRedirect: func(req *http.Request, via []*http.Request) error { return http.ErrUseLastResponse },
-	}
-	return nil
-}
+//var (
+//	Client           *http.Client
+//	ClientNoRedirect *http.Client
+//	dialTimout       = time.Second*5
+//	keepAlive        = 15 * time.Second
+//)
+//
+//func Inithttp() {
+//	err := InitHttpClient(10, time.Second*5)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//}
+//
+//func InitHttpClient(ThreadsNum int,Timeout time.Duration) error {
+//	dialer := &net.Dialer{
+//		Timeout:   dialTimout,
+//		KeepAlive: keepAlive,
+//
+//	}
+//	//d:= func(ctx context.Context,network,addr string)(net.Conn,error) {
+//	//	return Getconn(addr)
+//	//}
+//	tr := &http.Transport{
+//		DialContext:         dialer.DialContext,
+//		MaxConnsPerHost:     0,
+//		MaxIdleConns:        0,
+//		MaxIdleConnsPerHost: ThreadsNum * 2,
+//		IdleConnTimeout:     keepAlive,
+//		TLSClientConfig:     &tls.Config{InsecureSkipVerify: true},
+//		TLSHandshakeTimeout: Timeout*2,
+//		DisableKeepAlives:   false,
+//		//DialTLSContext: d,
+//	}
+//	Client = &http.Client{
+//		Transport: tr,
+//		Timeout:   Timeout,
+//	}
+//	ClientNoRedirect = &http.Client{
+//		Transport:     tr,
+//		Timeout:       Timeout,
+//		CheckRedirect: func(req *http.Request, via []*http.Request) error { return http.ErrUseLastResponse },
+//	}
+//	return nil
+//}

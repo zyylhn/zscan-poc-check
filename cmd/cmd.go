@@ -4,7 +4,7 @@ import (
 	"embed"
 	"flag"
 	"fmt"
-	"github/zyylhn/zscan_poc_check/lib"
+	"github.com/zyylhn/zscan_poc_check/lib"
 	"net/http"
 	"strings"
 )
@@ -26,7 +26,7 @@ func Execute()  {
 	flag.IntVar(&Thread,"thread",10,"set Thread")
 	flag.BoolVar(&Listpoc,"list",false,"List built in poc")
 	flag.Parse()
-	lib.Inithttp()  //初始化httpclient
+	//lib.Inithttp()  //初始化httpclient
 	req, err := http.NewRequest("GET", Target, nil)
 	if err != nil {
 		return
