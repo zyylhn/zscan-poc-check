@@ -4,9 +4,9 @@ import (
 	"embed"
 	"flag"
 	"fmt"
+	"github/zyylhn/zscan_poc_check/lib"
 	"net/http"
 	"strings"
-	"zscan_poc_check/lib"
 )
 
 //go:embed pocs
